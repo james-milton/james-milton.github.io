@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Phonics Riddle Game</title>
+  <style>
+    /* ✨ bright, kid-friendly palette */
+    :root {
+      --accent: #ff6f61;
+      --accent-dark: #c03e35;
+      --bg: #fffbea;
+      --card: #fff;
+      --text: #333;
+    }
+    * { box-sizing: border-box; font-family: 'Comic Sans MS', 'Segoe UI', sans-serif; }
+    body {
+      margin: 0; padding: 2rem; background: var(--bg); color: var(--text);
+      display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+    }
+    h1 { color: var(--accent-dark); margin-bottom: 1rem; }
+    #card {
+      background: var(--card); border-radius: 1rem; padding: 2rem 3rem;
+      max-width: 440px; width: 100%; box-shadow: 0 8px 20px rgba(0,0,0,.15);
+      text-align: center; transition: transform .2s;
+    }
+    #card:hover { transform: scale(1.02); }
+    .riddle { font-size: 1.25rem; line-height: 1.4; }
+    .keyword { color: var(--accent); font-weight: 700; }
+    .answer   { font-size: 2rem; margin: 1rem 0 .5rem; display: none; }
+    button {
+      cursor: pointer; border: none; border-radius: 999px; padding: .75rem 2rem;
+      font-size: 1rem; font-weight: 700; color: #fff; background: var(--accent);
+      transition: background .2s;
+    }
+    button:hover { background: var(--accent-dark); }
+    #next { display: none; margin-top: 1rem; background: #4caf50; }
+    #next:hover { background: #3d8b40; }
+  </style>
+</head>
+<body>
+  <h1>Guess the Word!</h1>
+
+  <div id="card">
+    <p id="riddle" class="riddle">Loading&nbsp;…</p>
+    <p id="answer" class="answer"></p>
+    <button id="reveal">Reveal</button>
+    <button id="next">Next Riddle 👉</button>
+  </div>
+
+  <script>
+    const riddleEl   = document.getElementById('riddle');
+    const answerEl   = document.getElementById('answer');
+    const revealBtn  = document.getElementById('reveal');
+    const nextBtn    = document.getElementById('next');
+
+    let riddles = [], current = 0;
+
+    /* 🔄 Fisher–Yates shuffle */
+    const shuffle = (arr) => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    };
+
+    /* 🎲 Display a riddle */
+    function showRiddle() {
+      const r = riddles[current];
+      // Highlight the *keyword* (marked with ** in JSON)
+      const promptHTML = r.prompt.replace(/\*\*(.*?)\*\*/g,
+        '<span class="keyword">$1</span>');
+      riddleEl.innerHTML = promptHTML;
+      answerEl.style.display = 'none';
+      revealBtn.style.display = 'inline-block';
+      nextBtn.style.display   = 'none';
+    }
+
+    /* 📣 Reveal answer + emoji */
+    revealBtn.addEventListener('click', () => {
+      const r = riddles[current];
+      answerEl.textContent = `${r.answer} ${r.emoji}`;
+      answerEl.style.display = 'block';
+      revealBtn.style.display = 'none';
+      nextBtn.style.display   = 'inline-block';
+    });
+
+    /* ⏭️ Next riddle */
+    nextBtn.addEventListener('click', () => {
+      current = (current + 1) % riddles.length;
+      showRiddle();
+    });
+
+    /* 🚀 Fetch riddles.json */
+    fetch('riddles.json')
+      .then(res => res.json())
+      .then(data => {
+        riddles = data;
+        shuffle(riddles);
+        showRiddle();
+      })
+      .catch(err => riddleEl.textContent =
+        '⚠️ Couldn’t load riddles.json');
+  </script>
+</body>
+</html>
