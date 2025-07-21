@@ -1,3 +1,4 @@
 [
-  { "name": "Subitising", "path": "games/subitising/subitising.html" }
+  { "name": "Subitising", "path": "games/subitising/subitising.html" },
+  { "name": "Snake", "path": "games/snake/snake.html" }
 ]
