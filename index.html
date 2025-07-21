@@ -15,20 +15,39 @@
   <h1>🎮 Welcome to My JavaScript Games v0.0</h1>
   <p>Choose a game to play:</p>
   <ul id="game-list"></ul>
-
+  
   <script>
     fetch('games/games.json')
       .then(res => res.json())
       .then(games => {
         const list = document.getElementById('game-list');
+  
         games.forEach(game => {
           const li = document.createElement('li');
           const a = document.createElement('a');
           a.href = game.path;
           a.textContent = game.name;
           li.appendChild(a);
+  
+          // Fetch and show the README.md
+          const desc = document.createElement('div');
+          desc.style.marginTop = '0.5rem';
+          desc.style.fontSize = '0.9rem';
+          desc.style.color = '#444';
+  
+          const readmeUrl = game.path.replace(/\/[^\/]+$/, '/README.md');
+  
+          fetch(readmeUrl)
+            .then(res => res.ok ? res.text() : '')
+            .then(text => {
+              desc.textContent = text.split('\n')[0] || ''; // just first line
+            })
+            .catch(() => {
+              desc.textContent = '';
+            });
+  
+          li.appendChild(desc);
           list.appendChild(li);
-          console.log(games);
         });
       })
       .catch(err => {
