@@ -1,38 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My Game Site</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; padding: 3rem; }
-    h1 { font-size: 2rem; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 1rem 0; }
-    a { text-decoration: none; color: blue; }
-  </style>
-</head>
-<body>
-  <h1>🎮 Welcome to My JavaScript Games</h1>
-  <p>Choose a game to play:</p>
-  <ul id="game-list"></ul>
-
-  <script>
-    fetch('games/games.json')
-      .then(res => res.json())
-      .then(games => {
-        const list = document.getElementById('game-list');
-        games.forEach(game => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = `games/${game.folder}/`;
-          a.textContent = game.name;
-          li.appendChild(a);
-          list.appendChild(li);
-        });
-      })
-      .catch(err => {
-        document.getElementById('game-list').innerHTML =
-          '<li>⚠️ Could not load games list.</li>';
-        console.error(err);
+<script>
+  fetch('games/games.json')
+    .then(res => res.json())
+    .then(games => {
+      const list = document.getElementById('game-list');
+      games.forEach(game => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = game.path;
+        a.textContent = game.name;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+    })
+    .catch(err => {
+      document.getElementById('game-list').innerHTML =
+        '<li>⚠️ Could not load games list.</li>';
+      console.error(err);
     });
 </script>
