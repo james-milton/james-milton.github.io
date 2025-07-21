@@ -10,51 +10,58 @@
     li { margin: 1rem 0; }
     a { text-decoration: none; color: blue; }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <h1>🎮 Welcome to My JavaScript Games v0.0</h1>
   <p>Choose a game to play:</p>
   <ul id="game-list"></ul>
   
-  <script>
-    fetch('games/games.json')
-      .then(res => res.json())
-      .then(games => {
-        const list = document.getElementById('game-list');
-  
-        games.forEach(game => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = game.path;
-          a.textContent = game.name;
-          li.appendChild(a);
-  
-          // Fetch and show the README.md
-          const desc = document.createElement('div');
-          desc.style.marginTop = '0.5rem';
-          desc.style.fontSize = '0.9rem';
-          desc.style.color = '#444';
-  
-          const readmeUrl = game.path.replace(/\/[^\/]+$/, '/README.md');
-  
-          fetch(readmeUrl)
-            .then(res => res.ok ? res.text() : '')
-            .then(text => {
-              desc.textContent = text.split('\n')[0] || ''; // just first line
-            })
-            .catch(() => {
-              desc.textContent = '';
-            });
-  
-          li.appendChild(desc);
-          list.appendChild(li);
-        });
-      })
-      .catch(err => {
-        document.getElementById('game-list').innerHTML =
-          '<li>⚠️ Could not load games list.</li>';
-        console.error(err);
+<script>
+  fetch('games/games.json')
+    .then(res => res.json())
+    .then(games => {
+      const list = document.getElementById('game-list');
+
+      games.forEach(game => {
+        const li = document.createElement('li');
+
+        // Game link
+        const a = document.createElement('a');
+        a.href = game.path;
+        a.textContent = game.name;
+        li.appendChild(a);
+
+        // README container
+        const desc = document.createElement('div');
+        desc.style.marginTop = '0.5rem';
+        desc.style.textAlign = 'left';
+
+        // Figure out README path
+        const readmeUrl = game.path.replace(/\/[^\/]+$/, '/README.md');
+
+        // Fetch and render Markdown (skipping first line)
+        fetch(readmeUrl)
+          .then(res => res.ok ? res.text() : '')
+          .then(text => {
+            const lines = text.split('\n').slice(1); // skip first line
+            const md = lines.join('\n');
+            desc.innerHTML = marked.parse(md);
+          })
+          .catch(() => {
+            desc.innerHTML = '';
+          });
+
+        li.appendChild(desc);
+        list.appendChild(li);
       });
-  </script>
+    })
+    .catch(err => {
+      document.getElementById('game-list').innerHTML =
+        '<li>⚠️ Could not load games list.</li>';
+      console.error(err);
+    });
+</script>
+
 </body>
 </html>
