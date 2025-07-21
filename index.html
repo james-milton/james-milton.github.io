@@ -4,64 +4,108 @@
   <meta charset="UTF-8">
   <title>My Game Site</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 3rem; }
-    h1 { font-size: 2rem; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 1rem 0; }
-    a { text-decoration: none; color: blue; }
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2.5rem;
+    }
+    .intro {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+    li {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+    a {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #2980b9;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <h1>🎮 Welcome to My JavaScript Games v0.0</h1>
-  <p>Choose a game to play:</p>
+
+  <header>
+    <h1>🎮 Welcome to My JavaScript Games v0.0</h1>
+  </header>
+
+  <section class="intro">
+    <p><em>(This is a placeholder introduction. Here you can write about the purpose of these games, how they help learn HTML or JavaScript, or anything else you want visitors to know.)</em></p>
+  </section>
+
   <ul id="game-list"></ul>
-  
-<script>
-  fetch('games/games.json')
-    .then(res => res.json())
-    .then(games => {
-      const list = document.getElementById('game-list');
 
-      games.forEach(game => {
-        const li = document.createElement('li');
+  <script>
+    fetch('games/games.json')
+      .then(res => res.json())
+      .then(games => {
+        const list = document.getElementById('game-list');
 
-        // Game link
-        const a = document.createElement('a');
-        a.href = game.path;
-        a.textContent = game.name;
-        li.appendChild(a);
+        games.forEach(game => {
+          const li = document.createElement('li');
 
-        // README container
-        const desc = document.createElement('div');
-        desc.style.marginTop = '0.5rem';
-        desc.style.textAlign = 'left';
+          const a = document.createElement('a');
+          a.href = game.path;
+          a.textContent = game.name;
+          li.appendChild(a);
 
-        // Figure out README path
-        const readmeUrl = game.path.replace(/\/[^\/]+$/, '/README.md');
+          const desc = document.createElement('div');
+          desc.style.marginTop = '0.5rem';
 
-        // Fetch and render Markdown (skipping first line)
-        fetch(readmeUrl)
-          .then(res => res.ok ? res.text() : '')
-          .then(text => {
-            const lines = text.split('\n').slice(1); // skip first line
-            const md = lines.join('\n');
-            desc.innerHTML = marked.parse(md);
-          })
-          .catch(() => {
-            desc.innerHTML = '';
-          });
+          const readmeUrl = game.path.replace(/\/[^\/]+$/, '/README.md');
 
-        li.appendChild(desc);
-        list.appendChild(li);
+          fetch(readmeUrl)
+            .then(res => res.ok ? res.text() : '')
+            .then(text => {
+              const lines = text.split('\n').slice(1);
+              const md = lines.join('\n');
+              desc.innerHTML = marked.parse(md);
+            })
+            .catch(() => {
+              desc.innerHTML = '';
+            });
+
+          li.appendChild(desc);
+          list.appendChild(li);
+        });
+      })
+      .catch(err => {
+        document.getElementById('game-list').innerHTML =
+          '<li>⚠️ Could not load games list.</li>';
+        console.error(err);
       });
-    })
-    .catch(err => {
-      document.getElementById('game-list').innerHTML =
-        '<li>⚠️ Could not load games list.</li>';
-      console.error(err);
-    });
-</script>
+  </script>
 
 </body>
 </html>
