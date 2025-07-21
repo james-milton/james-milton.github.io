@@ -33,4 +33,6 @@
       .catch(err => {
         document.getElementById('game-list').innerHTML =
           '<li>⚠️ Could not load games list.</li>';
-        console
+      console.error(err);
+    });
+</script>
