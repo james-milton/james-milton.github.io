@@ -1,0 +1,502 @@
+[
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **plane**. It also travels. It is a…",
+    "answer": "train",
+    "emoji": "🚆"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hat**. It has whiskers. It is a…",
+    "answer": "cat",
+    "emoji": "🐱"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **log**. It barks and wags its tail. It is a…",
+    "answer": "dog",
+    "emoji": "🐶"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **dish**. It swims in water. It is a…",
+    "answer": "fish",
+    "emoji": "🐟"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bug**. You drink hot cocoa from it. It is a…",
+    "answer": "mug",
+    "emoji": "☕"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **box**. It has a fluffy tail and lives in the woods. It is a…",
+    "answer": "fox",
+    "emoji": "🦊"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **cake**. It slithers on the ground. It is a…",
+    "answer": "snake",
+    "emoji": "🐍"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bog**. It hops and says ribbit. It is a…",
+    "answer": "frog",
+    "emoji": "🐸"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **knee**. It makes honey. It is a…",
+    "answer": "bee",
+    "emoji": "🐝"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **boat**. It has horns and likes to climb. It is a…",
+    "answer": "goat",
+    "emoji": "🐐"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **wig**. It rolls in mud and says oink. It is a…",
+    "answer": "pig",
+    "emoji": "🐷"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **pen**. It lays eggs on the farm. It is a…",
+    "answer": "hen",
+    "emoji": "🐔"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **plow**. It gives us milk. It is a…",
+    "answer": "cow",
+    "emoji": "🐄"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **house**. It is a small squeaky rodent. It is a…",
+    "answer": "mouse",
+    "emoji": "🐭"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **jeep**. It is fluffy and gives wool. It is a…",
+    "answer": "sheep",
+    "emoji": "🐑"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **pale**. It is a giant of the ocean. It is a…",
+    "answer": "whale",
+    "emoji": "🐋"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **star**. You can drive it. It is a…",
+    "answer": "car",
+    "emoji": "🚗"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **spoon**. It glows in the night sky. It is a…",
+    "answer": "moon",
+    "emoji": "🌙"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **ring**. He wears a crown. It is a…",
+    "answer": "king",
+    "emoji": "🤴"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **plum**. You can beat it to make music. It is a…",
+    "answer": "drum",
+    "emoji": "🥁"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **wall**. You can bounce it. It is a…",
+    "answer": "ball",
+    "emoji": "🏀"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **shell**. It rings to signal time. It is a…",
+    "answer": "bell",
+    "emoji": "🔔"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **red**. You sleep on it at night. It is a…",
+    "answer": "bed",
+    "emoji": "🛏️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **weed**. It can grow into a flower. It is a…",
+    "answer": "seed",
+    "emoji": "🌱"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **light**. It flies high in the wind. It is a…",
+    "answer": "kite",
+    "emoji": "🪁"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hair**. You sit on it. It is a…",
+    "answer": "chair",
+    "emoji": "🪑"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hook**. You read it. It is a…",
+    "answer": "book",
+    "emoji": "📖"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **glue**. You wear it on your foot. It is a…",
+    "answer": "shoe",
+    "emoji": "👟"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **rose**. You use it to smell fragrances. It is a…",
+    "answer": "nose",
+    "emoji": "👃"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **map**. You wear it on your head. It is a…",
+    "answer": "cap",
+    "emoji": "🧢"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **rock**. It keeps your foot warm. It is a…",
+    "answer": "sock",
+    "emoji": "🧦"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **reef**. It grows on a tree. It is a…",
+    "answer": "leaf",
+    "emoji": "🍃"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **truck**. It quacks and swims. It is a…",
+    "answer": "duck",
+    "emoji": "🦆"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bean**. She rules a kingdom. It is a…",
+    "answer": "queen",
+    "emoji": "👑"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **lip**. It sails across the sea. It is a…",
+    "answer": "ship",
+    "emoji": "🚢"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bow**. It falls in winter and is white. It is a…",
+    "answer": "snow",
+    "emoji": "❄️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **wire**. It is hot and can burn. It is a…",
+    "answer": "fire",
+    "emoji": "🔥"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **road**. It has warty skin and hops. It is a…",
+    "answer": "toad",
+    "emoji": "🐸"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **band**. It is part of your body. It is a…",
+    "answer": "hand",
+    "emoji": "🖐️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **dark**. It has many sharp teeth and swims. It is a…",
+    "answer": "shark",
+    "emoji": "🦈"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hole**. It digs tunnels underground. It is a…",
+    "answer": "mole",
+    "emoji": "🐹"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **rake**. It is a large body of water. It is a…",
+    "answer": "lake",
+    "emoji": "🏞️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **sing**. A bird uses it to fly. It is a…",
+    "answer": "wing",
+    "emoji": "🪽"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **town**. It wears colorful clothes and makes jokes. It is a…",
+    "answer": "clown",
+    "emoji": "🤡"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **gate**. You eat dinner from it. It is a…",
+    "answer": "plate",
+    "emoji": "🍽️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **meat**. You sit on it on the bus. It is a…",
+    "answer": "seat",
+    "emoji": "💺"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **pail**. It carries its shell on its back. It is a…",
+    "answer": "snail",
+    "emoji": "🐌"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bee**. It is tall and leafy. It is a…",
+    "answer": "tree",
+    "emoji": "🌳"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **sun**. You can eat it with butter. It is a…",
+    "answer": "bun",
+    "emoji": "🥯"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **car**. It can hold cookies. It is a…",
+    "answer": "jar",
+    "emoji": "🍪"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **fan**. You cook eggs in it. It is a…",
+    "answer": "pan",
+    "emoji": "🍳"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hug**. It is a slimy garden visitor. It is a…",
+    "answer": "slug",
+    "emoji": "🐌"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **gown**. It sits on a royal head. It is a…",
+    "answer": "crown",
+    "emoji": "👑"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **back**. You carry books in it. It is a…",
+    "answer": "pack",
+    "emoji": "🎒"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bill**. It is an old feather pen. It is a…",
+    "answer": "quill",
+    "emoji": "✒️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **tire**. It is made of metal and carries electricity. It is a…",
+    "answer": "wire",
+    "emoji": "🔌"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **clock**. You can skip it across a pond. It is a…",
+    "answer": "rock",
+    "emoji": "🪨"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hit**. It holds tools for fixing things. It is a…",
+    "answer": "kit",
+    "emoji": "🧰"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **tag**. You can carry groceries in it. It is a…",
+    "answer": "bag",
+    "emoji": "🛍️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **corn**. You can blow it to make a loud sound. It is a…",
+    "answer": "horn",
+    "emoji": "📯"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **tile**. It shows that you are happy. It is a…",
+    "answer": "smile",
+    "emoji": "😊"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hill**. You swallow it when you are ill. It is a…",
+    "answer": "pill",
+    "emoji": "💊"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **rain**. It is a loop of metal links you can wear. It is a…",
+    "answer": "chain",
+    "emoji": "⛓️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **rug**. It is a warm squeeze between friends. It is a…",
+    "answer": "hug",
+    "emoji": "🤗"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **park**. It is a small bird that sings. It is a…",
+    "answer": "lark",
+    "emoji": "🐦"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **sheet**. You stand on them. They are your…",
+    "answer": "feet",
+    "emoji": "🦶"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **soap**. You can use it to tie things together. It is a…",
+    "answer": "rope",
+    "emoji": "🪢"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bat**. It likes cheese in cartoons. It is a…",
+    "answer": "rat",
+    "emoji": "🐀"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bug**. It holds water on the dinner table. It is a…",
+    "answer": "jug",
+    "emoji": "🍶"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **dice**. It is frozen water. It is…",
+    "answer": "ice",
+    "emoji": "🧊"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **glad**. You write notes on it. It is a…",
+    "answer": "pad",
+    "emoji": "📝"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **cook**. It can catch a fish. It is a…",
+    "answer": "hook",
+    "emoji": "🪝"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **bold**. It is a shiny precious metal. It is…",
+    "answer": "gold",
+    "emoji": "🥇"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hen**. It comes after nine. It is…",
+    "answer": "ten",
+    "emoji": "🔟"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **new**. It is the color of the clear sky. It is…",
+    "answer": "blue",
+    "emoji": "🔵"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **big**. You do it with a shovel in the soil. It is to…",
+    "answer": "dig",
+    "emoji": "⛏️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **shop**. It can spin on a table. It is a…",
+    "answer": "top",
+    "emoji": "🪀"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **pie**. You wear it around your neck. It is a…",
+    "answer": "tie",
+    "emoji": "👔"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **spice**. It is a grain you eat with curry. It is…",
+    "answer": "rice",
+    "emoji": "🍚"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **car**. It twinkles in the night sky. It is a…",
+    "answer": "star",
+    "emoji": "🌟"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **well**. You can find it on the beach. It is a…",
+    "answer": "shell",
+    "emoji": "🐚"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **page**. A bird might live inside it. It is a…",
+    "answer": "cage",
+    "emoji": "🕊️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **tan**. You can ride in it with many friends. It is a…",
+    "answer": "van",
+    "emoji": "🚐"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **room**. You use it to sweep the floor. It is a…",
+    "answer": "broom",
+    "emoji": "🧹"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **swing**. You wear it on your finger. It is a…",
+    "answer": "ring",
+    "emoji": "💍"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **ham**. You spread it on toast and it's sweet. It is…",
+    "answer": "jam",
+    "emoji": "🍓"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **shelf**. A tiny magic helper from stories. It is an…",
+    "answer": "elf",
+    "emoji": "🧝"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hair**. You walk up it to the next floor. It is a…",
+    "answer": "stair",
+    "emoji": "🪜"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **tall**. You go there to shop at many stores. It is a…",
+    "answer": "mall",
+    "emoji": "🏬"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **hide**. You zoom down it at the playground. It is a…",
+    "answer": "slide",
+    "emoji": "🛝"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **camp**. It lights up a room when it's dark. It is a…",
+    "answer": "lamp",
+    "emoji": "💡"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **line**. It climbs and can grow grapes. It is a…",
+    "answer": "vine",
+    "emoji": "🌿"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **fish**. You eat dinner from it. It is a…",
+    "answer": "dish",
+    "emoji": "🍽️"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **snake**. You use it to gather leaves in the yard. It is a…",
+    "answer": "rake",
+    "emoji": "🍂"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **think**. Water flows into it when you wash your hands. It is a…",
+    "answer": "sink",
+    "emoji": "🚰"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **yard**. You send it to someone on their birthday. It is a…",
+    "answer": "card",
+    "emoji": "💌"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **chill**. You cook burgers on it outside. It is a…",
+    "answer": "grill",
+    "emoji": "🍔"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **pool**. You use it to fix things. It is a…",
+    "answer": "tool",
+    "emoji": "🔧"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **stone**. It holds your ice cream scoop. It is a…",
+    "answer": "cone",
+    "emoji": "🍦"
+  },
+  {
+    "prompt": "I’m thinking of a word. It rhymes with **time**. It is the sound a big clock makes. It is a…",
+    "answer": "chime",
+    "emoji": "🛎️"
+  }
+]
