@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Which Number Is Bigger?</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom, #fff0f5, #e0f7fa);
+      text-align: center;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      color: #ff4081;
+    }
+    .panel {
+      display: inline-block;
+      width: 40%;
+      margin: 1rem;
+      padding: 2rem;
+      border: 4px dashed #64b5f6;
+      border-radius: 20px;
+      cursor: pointer;
+      vertical-align: top;
+      min-height: 120px;
+      background-color: #fff8e1;
+      transition: transform 0.2s;
+    }
+    .panel:hover {
+      transform: scale(1.05);
+    }
+    .result {
+      font-size: 2rem;
+      margin: 1rem;
+      font-weight: bold;
+    }
+    .controls {
+      margin-bottom: 2rem;
+      background-color: #ffe0b2;
+      padding: 1rem;
+      border-radius: 12px;
+      display: inline-block;
+    }
+    .controls label, .controls button {
+      font-size: 1.2rem;
+      margin: 0.5rem;
+    }
+    .controls input {
+      width: 50px;
+      font-size: 1.2rem;
+    }
+    .dot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      width: 60px;
+      height: 60px;
+      margin: auto;
+      gap: 4px;
+    }
+    .dot {
+      width: 14px;
+      height: 14px;
+      background-color: #ff7043;
+      border-radius: 50%;
+      align-self: center;
+      justify-self: center;
+    }
+    .tally-svg {
+      display: inline-block;
+      stroke: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Which Number Is Bigger? 🎲</h1>
+  <div class="controls">
+    <label>Min: <input type="number" id="minNum" value="0" /></label>
+    <label>Max: <input type="number" id="maxNum" value="10" /></label>
+    <button onclick="nextRound()">Start / Next</button>
+  </div>
+  <div>
+    <div id="panel1" class="panel" onclick="makeGuess(0)"></div>
+    <div id="panel2" class="panel" onclick="makeGuess(1)"></div>
+  </div>
+  <div id="result" class="result"></div>
+
+  <script>
+    let numbers = [];
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function wordString(n) {
+      const words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+      return document.createTextNode(words[n] || n);
+    }
+
+    function dotGrid(n) {
+      const dotPositions = {
+        1: [4],
+        2: [0, 8],
+        3: [0, 4, 8],
+        4: [0, 2, 6, 8],
+        5: [0, 2, 4, 6, 8],
+        6: [0, 2, 3, 5, 6, 8],
+      };
+      const container = document.createElement("div");
+      container.className = "dot-grid";
+      (dotPositions[n] || dotPositions[6]).forEach(i => {
+        const dot = document.createElement("div");
+        dot.className = "dot";
+        container.appendChild(dot);
+        const filler = document.createElement("div");
+        container.insertBefore(filler, container.children[i]);
+      });
+      return container;
+    }
+
+    function createTallySVG(n) {
+      const container = document.createElement('div');
+      container.style.display = 'flex';
+      container.style.gap = '4px';
+
+      const groupCount = Math.floor(n / 5);
+      const remainder = n % 5;
+
+      for (let i = 0; i < groupCount; i++) {
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        group.setAttribute("width", "40");
+        group.setAttribute("height", "40");
+        group.classList.add("tally-svg");
+
+        const lines = [
+          [4, 5, 4, 35],
+          [12, 5, 12, 35],
+          [20, 5, 20, 35],
+          [28, 5, 28, 35],
+          [2, 35, 30, 5]
+        ];
+
+        for (let [x1, y1, x2, y2] of lines) {
+          const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          line.setAttribute("x1", x1);
+          line.setAttribute("y1", y1);
+          line.setAttribute("x2", x2);
+          line.setAttribute("y2", y2);
+          line.setAttribute("stroke", "#4caf50");
+          line.setAttribute("stroke-width", "2");
+          group.appendChild(line);
+        }
+
+        container.appendChild(group);
+      }
+
+      for (let i = 0; i < remainder; i++) {
+        const lineSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        lineSvg.setAttribute("width", "8");
+        lineSvg.setAttribute("height", "40");
+        lineSvg.classList.add("tally-svg");
+
+        const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        l.setAttribute("x1", "4");
+        l.setAttribute("y1", "5");
+        l.setAttribute("x2", "4");
+        l.setAttribute("y2", "35");
+        l.setAttribute("stroke", "#4caf50");
+        l.setAttribute("stroke-width", "2");
+        lineSvg.appendChild(l);
+
+        container.appendChild(lineSvg);
+      }
+
+      return container;
+    }
+
+    function randomRepresentation(n) {
+      const type = ["numeral", "word", "dots", "tally"][getRandomInt(0, 3)];
+      if (type === "numeral") return document.createTextNode(n);
+      if (type === "word") return wordString(n);
+      if (type === "dots") return dotGrid(Math.min(n, 6));
+      return createTallySVG(n);
+    }
+
+    function renderPanel(panel, content) {
+      panel.innerHTML = "";
+      panel.appendChild(content);
+    }
+
+    function nextRound() {
+      const min = parseInt(document.getElementById("minNum").value);
+      const max = parseInt(document.getElementById("maxNum").value);
+      let a = getRandomInt(min, max);
+      let b = getRandomInt(min, max);
+      while (a === b) b = getRandomInt(min, max);
+      numbers = [a, b];
+      renderPanel(document.getElementById("panel1"), randomRepresentation(a));
+      renderPanel(document.getElementById("panel2"), randomRepresentation(b));
+      document.getElementById("result").textContent = "";
+    }
+
+    function makeGuess(index) {
+      const correct = numbers[index] > numbers[1 - index];
+      document.getElementById("result").textContent = correct ? "✅ Correct!" : "❌ Try again!";
+      setTimeout(nextRound, 1000);
+    }
+  </script>
+</body>
+</html>

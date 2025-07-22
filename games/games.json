@@ -1,5 +1,6 @@
 [
   { "name": "Subitising", "path": "games/subitising/subitising.html" },
   { "name": "Snake", "path": "games/snake/snake.html" },
-  { "name": "I'm thinking of a word...", "path": "games/imthinkingofaword/imthinkingofaword.html" }
+  { "name": "I'm thinking of a word...", "path": "games/imthinkingofaword/imthinkingofaword.html" },
+  { "name": "Which number is bigger?", "path": "games/whichisbigger/whichisbigger.html"}
 ]
