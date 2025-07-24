@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Word Game</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: radial-gradient(circle at top, #ffe4f2, #c2e9fb);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1, h2 {
+      margin-top: 1em;
+      color: #333;
+      text-shadow: 1px 1px #fff;
+    }
+
+    #startScreen, #gameScreen {
+      width: 100%;
+      max-width: 800px;
+      background: #ffffffcc;
+      border-radius: 20px;
+      padding: 2em;
+      margin: 2em;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1em;
+      margin-top: 2em;
+    }
+
+    .word-button {
+      background: #fff1c1;
+      border: 4px solid #ffb347;
+      border-radius: 20px;
+      padding: 1em 2em;
+      font-size: 2em;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .word-button:hover {
+      background: #ffe08a;
+      transform: scale(1.05);
+    }
+
+    .correct {
+      background: #b6fcb6 !important;
+      border-color: #3cb371 !important;
+    }
+
+    .incorrect {
+      background: #ffb6b6 !important;
+      border-color: #e74c3c !important;
+    }
+
+    input[type="text"] {
+      padding: 0.8em;
+      font-size: 1.2em;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      margin-top: 1em;
+    }
+
+    button {
+      font-size: 1.2em;
+      background: #fdd835;
+      border: none;
+      padding: 0.8em 2em;
+      border-radius: 12px;
+      margin: 0.5em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffca28;
+    }
+
+    #score {
+      font-size: 1.4em;
+      margin-top: 2em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="startScreen">
+    <h1>🎉 Reading Word Game</h1>
+    <p>Choose how you'd like to start:</p>
+    <button onclick="startGame('random')">🔀 Random Game</button><br>
+    <input type="text" id="seedInput" placeholder="Enter a number seed..." />
+    <button onclick="startGame('seeded')">🎯 Use Seed</button>
+  </div>
+
+  <div id="gameScreen">
+    <h2>🧠 Listen and Choose the Word</h2>
+    <button onclick="speakWord()">🔊 Say the Word</button>
+    <div class="buttons" id="wordButtons"></div>
+    <div id="score"></div>
+  </div>
+
+  <script>
+    const words = [
+      "the", "of", "and", "a", "to", "in", "is", "you", "that", "it", "he", "was", "for", "on", "are", "as", "with", "his", "they", "I",
+      "at", "be", "this", "have", "from", "or", "one", "had", "by", "word", "but", "not", "what", "all", "were", "we", "when", "your", "can", "said",
+      "there", "use", "an", "each", "which", "she", "do", "how", "their", "if", "will", "up", "other", "about", "out", "many", "then", "them", "these", "so",
+      "some", "her", "would", "make", "like", "him", "into", "time", "has", "look", "two", "more", "write", "go", "see", "number", "no", "way", "could", "people",
+      "my", "than", "first", "water", "been", "call", "who", "oil", "its", "now", "find", "long", "down", "day", "did", "get", "come", "made", "may", "part",
+      "over", "new", "sound", "take", "only", "little", "work", "know", "place", "years", "live", "me", "back", "give", "most", "very", "after", "thing", "our",
+      "just", "name", "good", "sentence", "man", "think", "say", "great", "where", "help", "through", "much", "before", "line", "right", "too", "means", "old",
+      "any", "same", "tell", "boy", "follow", "came", "want", "show", "also", "around", "form", "three", "small", "set", "put", "end", "does", "another", "well",
+      "large", "must", "big", "even", "such", "because", "turn", "here", "why", "ask", "went", "men", "read", "need", "land", "different", "home", "us",
+      // ... Add more words up to 1000 as needed. (Can auto-expand this list.)
+    ];
+
+    const totalRounds = 10;
+    let currentWord = "";
+    let score = 0;
+    let round = 0;
+    let randomSeed = 0;
+    let seededRandom = null;
+    let voice = null;
+
+    function setSeed(seed) {
+      let s = seed;
+      return function() {
+        s = Math.sin(s++) * 10000;
+        return s - Math.floor(s);
+      };
+    }
+
+    function pickRandom(arr) {
+      return arr[Math.floor(seededRandom() * arr.length)];
+    }
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(seededRandom() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    function speakWord() {
+      const utterance = new SpeechSynthesisUtterance(currentWord);
+      if (!voice) {
+        const voices = speechSynthesis.getVoices();
+        voice = voices.find(v => v.name.includes("Arthur")) || voices[0];
+      }
+      utterance.voice = voice;
+      utterance.rate = 0.8;
+      speechSynthesis.speak(utterance);
+    }
+
+    function generateRound() {
+      if (round >= totalRounds) {
+        document.getElementById("wordButtons").innerHTML = "";
+        document.getElementById("score").textContent = `🎉 Game Over! You got ${score} out of ${totalRounds} right.`;
+        return;
+      }
+
+      document.getElementById("score").textContent = `🔢 Round ${round + 1} of ${totalRounds} | ✅ Score: ${score}`;
+      const buttonContainer = document.getElementById("wordButtons");
+      buttonContainer.innerHTML = "";
+
+      currentWord = pickRandom(words);
+      const choices = [currentWord];
+
+      while (choices.length < 5) {
+        const word = pickRandom(words);
+        if (!choices.includes(word)) choices.push(word);
+      }
+
+      shuffle(choices);
+
+      choices.forEach(word => {
+        const btn = document.createElement("button");
+        btn.textContent = word;
+        btn.className = "word-button";
+        btn.onclick = () => handleChoice(btn, word);
+        buttonContainer.appendChild(btn);
+      });
+    }
+
+    function handleChoice(button, word) {
+      if (word === currentWord) {
+        button.classList.add("correct");
+        score++;
+      } else {
+        button.classList.add("incorrect");
+      }
+      disableButtons();
+      round++;
+      setTimeout(() => generateRound(), 1500);
+    }
+
+    function disableButtons() {
+      const buttons = document.querySelectorAll(".word-button");
+      buttons.forEach(btn => btn.disabled = true);
+    }
+
+    function startGame(mode) {
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("gameScreen").style.display = "block";
+
+      if (mode === 'random') {
+        randomSeed = Math.floor(Math.random() * 100000);
+      } else {
+        const input = document.getElementById("seedInput").value;
+        randomSeed = parseInt(input) || 0;
+      }
+
+      seededRandom = setSeed(randomSeed);
+      score = 0;
+      round = 0;
+      generateRound();
+    }
+
+    speechSynthesis.onvoiceschanged = () => {
+      const voices = speechSynthesis.getVoices();
+      voice = voices.find(v => v.name.includes("Arthur")) || voices[0];
+    };
+  </script>
+</body>
+</html>

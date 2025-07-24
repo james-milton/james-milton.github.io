@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Try All Voices</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      background: #f4f4f4;
+    }
+    h1 {
+      margin-bottom: 1em;
+    }
+    .voice {
+      background: white;
+      padding: 1em;
+      margin: 0.5em 0;
+      border-left: 4px solid #007BFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .voice-info {
+      font-weight: bold;
+    }
+    button {
+      padding: 0.5em 1em;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Try All Available Voices</h1>
+<div id="voiceList">Loading voices...</div>
+
+<script>
+  const wordsToTest = ["the", "was", "with", "you", "said"];
+  const voiceList = document.getElementById("voiceList");
+
+  function speakWords(voice) {
+    wordsToTest.forEach((word, i) => {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.voice = voice;
+      utterance.rate = 0.8;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      utterance.delay = i * 500;
+      setTimeout(() => speechSynthesis.speak(utterance), i * 700);
+    });
+  }
+
+  function listVoices() {
+    const voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith("en"));
+    voiceList.innerHTML = '';
+    voices.forEach((voice, index) => {
+      const div = document.createElement("div");
+      div.className = "voice";
+
+      const info = document.createElement("div");
+      info.className = "voice-info";
+      info.textContent = `${voice.name} (${voice.lang})${voice.default ? " [Default]" : ""}`;
+
+      const btn = document.createElement("button");
+      btn.textContent = "▶️ Try Voice";
+      btn.onclick = () => speakWords(voice);
+
+      div.appendChild(info);
+      div.appendChild(btn);
+      voiceList.appendChild(div);
+    });
+
+    if (voices.length === 0) {
+      voiceList.textContent = "No voices found. Try refreshing or using a different browser.";
+    }
+  }
+
+  // Load voices (sometimes asynchronously)
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = listVoices;
+  }
+
+  listVoices(); // Also try once immediately
+</script>
+
+</body>
+</html>
