@@ -4,4 +4,6 @@
   { "name": "I'm thinking of a word...", "path": "games/imthinkingofaword/imthinkingofaword.html" },
   { "name": "Which number is bigger?", "path": "games/whichisbigger/whichisbigger.html"},
   { "name": "Which word is it?", "path": "games/sounds/sounds.html"}
+  ,
+  { "name": "Balloon Word Builder", "path": "games/cvc/cvc.html" }
 ]
